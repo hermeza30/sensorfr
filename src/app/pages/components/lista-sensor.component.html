@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Sensors</h3>
+        <table class="table table-hover">
+          <thead>
+            <th>Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>MinVal</th>
+            <th>MaxVal</th>
+            <th>Active</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>Add Event</th>
+          </thead>
+          <tbody *ngFor="let s of sensors">
+            <tr>
+              <td>{{ s.name }}</td>
+              <td>{{ s.lat }}</td>
+              <td>{{ s.long }}</td>
+              <td>{{ s.minval }}</td>
+              <td>{{ s.maxval }}</td>
+              <td>{{ s.active }}</td>
+              <td>
+                <button [routerLink]="['/modificar',s._id]" type="button" class="btn btn-warning">Update</button>
+              </td>
+              <td>
+                <button type="button" (click)="delete(s._id)" class="btn btn-danger">Delete</button>
+              </td>
+              <td>
+                <button type="button" [routerLink]="['/evento',s._id]"  class="btn btn-success">Add</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

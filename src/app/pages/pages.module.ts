@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { PAGES_ROUTES } from './pages.routes';
 import {ReactiveFormsModule,FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { ComponentModule } from '../components/component.module';
+import { ComponentModule } from './components/component.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SensorComponent } from './sensor/sensor.component';
 import { ModificarSensorComponent } from './sensor/modificar-sensor.component';
 import { VerSensorComponent } from './sensor/ver-sensor.component';
 import { PagesComponent } from './pages.component';
+import { EventComponent } from './sensor/event.component';
 @NgModule({
-  declarations: [PagesComponent,SensorComponent,ModificarSensorComponent,VerSensorComponent],
+  declarations: [PagesComponent,SensorComponent,ModificarSensorComponent,VerSensorComponent, EventComponent],
   imports: [
     CommonModule,
     PAGES_ROUTES,
@@ -20,6 +21,6 @@ import { PagesComponent } from './pages.component';
     ComponentModule,
     BrowserAnimationsModule,
   ],
-  exports:[PagesComponent,SensorComponent,ModificarSensorComponent,VerSensorComponent]
+  exports:[PagesComponent,SensorComponent,ModificarSensorComponent,VerSensorComponent,EventComponent]
 })
 export class PagesModule { }

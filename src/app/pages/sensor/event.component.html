@@ -1,0 +1,42 @@
+<form #f="ngForm"  (ngSubmit)="addEvent()">
+    <h4>Events</h4>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label>Sensor:</label>
+      <input [(ngModel)]="id"  name="sensorid"class="form-control" placeholder="Name" readonly/>
+    </div>
+    <div class="form-group col-md-3">
+        <label>Create at:</label>
+        <input #c="ngModel" ngModel  name="createat" type="text" class="form-control" placeholder="Create At" />
+      </div>
+    <div class="form-group col-md-3">
+      <label>Value</label>
+      <input #c="ngModel" ngModel  name="value" type="text" class="form-control" placeholder="Value" />
+    </div>
+
+  </div>
+  <div class="float-right">
+      <button type="submit" class="btn btn-primary">Add</button>
+  </div>
+</form>
+<br>
+<br>
+
+
+<table *ngIf="listEvents.length>0" class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sensor Id</th>
+        <th scope="col">CreateAt</th>
+        <th scope="col">Value</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let ev of listEvents">
+      <tr >
+        <td>{{ev.sensorId}}</td>
+        <td>{{ev.createat}}</td>
+        <td>{{ev.value}}</td>
+      </tr>
+
+    </tbody>
+  </table>

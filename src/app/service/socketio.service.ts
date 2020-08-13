@@ -10,13 +10,11 @@ export class SocketioService {
   public url;
   constructor() { 
     this.url=URL_SERVICE;
-    console.log(this.url);
     this.socket=io(this.url);
   }
   listen(evento:string){
     return new Observable((observe:Subscriber<any>)=>{
       this.socket.on(evento,(data)=>{
-
       });
     });
   }
