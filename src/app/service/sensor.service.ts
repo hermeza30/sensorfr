@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import swal from 'sweetalert';
+import { EventSensor } from '../models/event.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,5 +49,5 @@ export class SensorService {
         return res.sensor;
     }),catchError(err=>throwError(err)));
   }
-  
+
 }

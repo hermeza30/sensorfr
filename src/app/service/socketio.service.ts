@@ -15,10 +15,14 @@ export class SocketioService {
   listen(evento:string){
     return new Observable((observe:Subscriber<any>)=>{
       this.socket.on(evento,(data)=>{
+        
+        observe.next(data);
       });
     });
   }
   emit(evento:string,data){
-    this.socket.emit(evento,data);
+    this.socket.emit(evento,data,(res)=>{
+      console.log(res);
+    });
   }
 }

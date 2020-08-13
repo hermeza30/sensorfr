@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Sensor } from '../../models/sensor.motel';
 import { SensorService } from '../../service/sensor.service';
 import { Subscriber } from 'rxjs';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sensor',
@@ -20,6 +21,7 @@ export class SensorComponent implements OnInit {
   //  this.connect();
    this.createForm();
    this.getSensors();
+   this.connect();
   }
   createForm(){
     this.form=new FormGroup({
@@ -51,9 +53,9 @@ export class SensorComponent implements OnInit {
     return sensor;
   }
   connect(){
-    this._socketio.listen('connect').subscribe((data)=>{
-      console.log(data)
-    })
+    this._socketio.listen('returnListEvents').subscribe((data)=>{
+      console.log(data);
+    });
   }
   disconnect(){
     this._socketio.listen('disconnect').subscribe((data)=>{
