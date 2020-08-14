@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketioService } from '../../service/socketio.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Sensor } from '../../models/sensor.motel';
 import { SensorService } from '../../service/sensor.service';
 import { Subscriber } from 'rxjs';
@@ -29,7 +29,7 @@ export class SensorComponent implements OnInit {
       long:new FormControl(),
       minval:new FormControl(),
       maxval:new FormControl(),
-      act:new FormControl(false)
+      act:new FormControl(true)
     })
   }
   register(){

@@ -1,7 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Sensor } from '../../models/sensor.motel';
 import { SensorService } from '../../service/sensor.service';
-import { SocketioService } from '../../service/socketio.service';
 
 @Component({
   selector: 'app-lista-sensor',
@@ -11,12 +10,13 @@ import { SocketioService } from '../../service/socketio.service';
 })
 export class ListaSensorComponent implements OnInit {
 @Input('sensors')sensors:Sensor[];
+@Output('refresh') refresh:EventEmitter<boolean>=new EventEmitter();
   constructor(private _sensorService:SensorService) { }
 
   ngOnInit(): void {
   }
   delete(id:string){
-    this._sensorService.deleteIdSensor(id).subscribe();
+    this._sensorService.deleteIdSensor(id).subscribe(()=>this.refresh.emit());
   }
 
 }

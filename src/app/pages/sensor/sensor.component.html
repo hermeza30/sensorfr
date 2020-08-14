@@ -26,8 +26,8 @@
     </div>
     <div class="form-group  col-md-6">
         <div class="form-check">
-            <input  formControlName="act" class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
+            <input  formControlName="act" class="form-check-input" type="checkbox">
+            <label class="form-check-label">
               Active
             </label>
           </div>
@@ -39,4 +39,4 @@
 </form>
 <br>
 <br>
-<app-lista-sensor *ngIf="sensorslist.length>0" [sensors]="sensorslist"></app-lista-sensor>
+<app-lista-sensor *ngIf="sensorslist.length>0" [sensors]="sensorslist" (refresh)="getSensors()"></app-lista-sensor>

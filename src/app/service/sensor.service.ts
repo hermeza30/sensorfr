@@ -6,11 +6,12 @@ import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import swal from 'sweetalert';
 import { EventSensor } from '../models/event.model';
+import { LoginService } from './login.service';
 @Injectable({
   providedIn: 'root',
 })
 export class SensorService {
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient, public _loginService:LoginService) {}
 
   register(sensor: Sensor) {
     let url = URL_SERVICE + '/sensor';
@@ -53,9 +54,10 @@ export class SensorService {
   }
   deleteIdSensor(id: string) {
     let url = URL_SERVICE + '/sensor/' + id;
+    url+="/?token="+this._loginService.token;
     return this.http.delete(url).pipe(
       map((res: any) => {
-        swal('Update', 'Sensor update', 'success');
+        swal('Update', 'Sensor delete', 'success');
 
         return res.sensor;
       }),
