@@ -18,7 +18,6 @@ export class SensorComponent implements OnInit {
   constructor(private _socketio:SocketioService,public _sensorService:SensorService) { }
 
   ngOnInit(): void {
-  //  this.connect();
    this.createForm();
    this.getSensors();
    this.connect();
@@ -53,8 +52,9 @@ export class SensorComponent implements OnInit {
     return sensor;
   }
   connect(){
-    this._socketio.listen('returnListEvents').subscribe((data)=>{
-      console.log(data);
+
+    this._socketio.listen('connect').subscribe((data)=>{
+      console.log("Conectado al servidor");
     });
   }
   disconnect(){

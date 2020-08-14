@@ -10,7 +10,7 @@ const pagesRoutes:Routes=[
         {path:'ver',component:VerSensorComponent,data:{titulo:"Ver"}},
         {path:'modificar/:id',component:ModificarSensorComponent,data:{titulo:"Modificar"}},
         {path:'evento/:id',component:EventComponent,data:{titulo:"Eventos"}},
-
+        {path:'',redirectTo:'/sensor',pathMatch:'full'}
     ]},
 ];
 export const PAGES_ROUTES=RouterModule.forChild(pagesRoutes);

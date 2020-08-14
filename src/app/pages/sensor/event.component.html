@@ -1,4 +1,4 @@
-<form #f="ngForm"  (ngSubmit)="addEvent(f)">
+<form #f="ngForm"  (ngSubmit)="addEvent(f)" ngNativeValidate>
     <h4>Events</h4>
   <div class="form-row">
     <div class="form-group col-md-3">
@@ -7,11 +7,11 @@
     </div>
     <div class="form-group col-md-3">
         <label>Create at:</label>
-        <input #cat="ngModel" ngModel  name="createat" type="text" class="form-control" placeholder="Create At" />
+        <input #cat="ngModel" ngModel  name="createat" type="text" class="form-control" placeholder="Create At" required/>
       </div>
     <div class="form-group col-md-3">
       <label>Value</label>
-      <input #val="ngModel" ngModel  name="value" type="text" class="form-control" placeholder="Value" />
+      <input #val="ngModel" ngModel  name="value" type="text" class="form-control" placeholder="Value" required/>
     </div>
 
   </div>
@@ -33,7 +33,7 @@
     </thead>
     <tbody *ngFor="let ev of listEvents">
       <tr >
-        <td>{{ev.sensorId}}</td>
+        <td>{{ev.sensorid}}</td>
         <td>{{ev.createat}}</td>
         <td>{{ev.value}}</td>
       </tr>

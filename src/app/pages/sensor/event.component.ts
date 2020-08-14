@@ -5,6 +5,7 @@ import { SocketioService } from '../../service/socketio.service';
 import { NgForm } from '@angular/forms';
 import { Sensor } from '../../models/sensor.motel';
 import { SensorService } from '../../service/sensor.service';
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-event',
@@ -23,31 +24,31 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.connect();
     this.getSensorById();
-    this._socketio.listen('')
+    
   }
   addEvent(f:NgForm){
-    console.log(f.value);
     let evn=new EventSensor('',this.sensor._id,f.value.createat,f.value.value);
-    console.log(evn);
-    this._socketio.emit('createEvent',evn);
+    this.createEvent(evn);
   }
-  createEvent(){
-
+  createEvent(ev){
+      this._sensorService.saveEvent(ev).subscribe((res:any)=>{
+        if(res.ok){
+          this.connect();
+        }
+      })
   }
   getSensorById(){
     this._sensorService.getIdSensor(this.id).subscribe(res=>{
       this.sensor=res;
+      this.connect();
     })
-  }
-  getListById(id:string){
-
   }
   connect(){
-    this._socketio.listen('connect').subscribe((data)=>{
-      console.log(data)
-    })
+    this._socketio.emit('listen',this.sensor._id);
+    this._socketio.listen('returnList').subscribe((data)=>{
+     this.listEvents=data;
+    });
   }
   disconnect(){
     this._socketio.listen('disconnect').subscribe((data)=>{
