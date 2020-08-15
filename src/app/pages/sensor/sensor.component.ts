@@ -29,10 +29,11 @@ export class SensorComponent implements OnInit {
       long:new FormControl(),
       minval:new FormControl(),
       maxval:new FormControl(),
-      act:new FormControl(true)
+      act:new FormControl(false)
     })
   }
   register(){
+    console.log("Si pasa")
     let sensor=this.values();
          this._sensorService.register(sensor).subscribe((res)=>this.sensorslist.push(res));
   }

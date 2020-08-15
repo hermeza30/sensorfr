@@ -15,6 +15,7 @@ export class SensorService {
 
   register(sensor: Sensor) {
     let url = URL_SERVICE + '/sensor';
+    url+="/?token="+this._loginService.token;
     return this.http.post(url, sensor).pipe(
       map((res: any) => {
         swal('Save', 'Sensor saved', 'success');
@@ -25,6 +26,7 @@ export class SensorService {
   }
   get() {
     let url = URL_SERVICE + '/sensor';
+    url+="/?token="+this._loginService.token;
     return this.http.get(url).pipe(
       map((res: any) => {
         return res.sensor;
@@ -34,6 +36,7 @@ export class SensorService {
   }
   getIdSensor(id: string) {
     let url = URL_SERVICE + '/sensor' + '/' + id;
+    url+="/?token="+this._loginService.token;
     return this.http.get(url).pipe(
       map((res: any) => {
         return res.sensor;
@@ -43,6 +46,7 @@ export class SensorService {
   }
   updateIdSensor(id: string, sensor: Sensor) {
     let url = URL_SERVICE + '/sensor/' + id;
+    url+="/?token="+this._loginService.token;
     return this.http.put(url, sensor).pipe(
       map((res: any) => {
         swal('Update', 'Sensor update', 'success');
@@ -66,6 +70,7 @@ export class SensorService {
   }
   saveEvent(ev: EventSensor) {
     let url = URL_SERVICE + '/event';
+    url+="/?token="+this._loginService.token;
     return this.http.post(url, ev).pipe(
       map((res: any) => {
         swal('Save', 'Event saved', 'success');

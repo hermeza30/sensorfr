@@ -17,7 +17,6 @@ export class LoginService {
     let url = URL_SERVICE + '/login';
     return this.http.get(url).pipe(
       map((res: any) => {
-        console.log(res)
         this.token=res.token;
         this.usuario=res.usuariodb;
         this.guardarStorage(res.token,res.usuariodb);
